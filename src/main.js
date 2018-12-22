@@ -47,7 +47,7 @@ export default {
     window: {
       backgroundTextStyle: 'light',
       navigationBarBackgroundColor: '#fff',
-      navigationBarTitleText: '科比',
+      navigationBarTitleText: 'shop',
       navigationBarTextStyle: 'black',
     },
     tabBar: {
