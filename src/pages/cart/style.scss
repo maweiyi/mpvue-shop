@@ -5,7 +5,8 @@
     justify-content: space-between;
     padding: 30rpx 20rpx;
     div {
-      background: url(http://nos.netease.com/mailpub/hxm/yanxuan-wap/p/20150730/style/img/icon-normal/servicePolicyRed-518d32d74b.png) 0 center no-repeat;
+      background: url(http://nos.netease.com/mailpub/hxm/yanxuan-wap/p/20150730/style/img/icon-normal/servicePolicyRed-518d32d74b.png)
+        0 center no-repeat;
       background-size: 10rpx;
       padding-left: 15rpx;
       display: flex;
@@ -34,12 +35,14 @@
           .icon {
             height: 125rpx;
             width: 34rpx;
-            background: url(http://nos.netease.com/mailpub/hxm/yanxuan-wap/p/20150730/style/img/icon-normal/checkbox-0e09baa37e.png) no-repeat center center;
+            background: url(http://nos.netease.com/mailpub/hxm/yanxuan-wap/p/20150730/style/img/icon-normal/checkbox-0e09baa37e.png)
+              no-repeat center center;
             background-size: 34rpx 34rpx;
             margin: 0 20rpx;
           }
           .icon.active {
-            background: url(http://nos.netease.com/mailpub/hxm/yanxuan-wap/p/20150730/style/img/icon-normal/checkbox-checked-822e54472a.png) no-repeat center center;
+            background: url(http://nos.netease.com/mailpub/hxm/yanxuan-wap/p/20150730/style/img/icon-normal/checkbox-checked-822e54472a.png)
+              no-repeat center center;
             background-size: 34rpx 34rpx;
           }
           .img {
@@ -97,13 +100,15 @@
     .left {
       display: flex;
       align-items: center;
-      background: url(http://nos.netease.com/mailpub/hxm/yanxuan-wap/p/20150730/style/img/icon-normal/checkbox-0e09baa37e.png) no-repeat;
+      background: url(http://nos.netease.com/mailpub/hxm/yanxuan-wap/p/20150730/style/img/icon-normal/checkbox-0e09baa37e.png)
+        no-repeat;
       background-size: 34rpx 34rpx;
       background-position: 20rpx;
       padding-left: 70rpx;
     }
     .active {
-      background: url(http://nos.netease.com/mailpub/hxm/yanxuan-wap/p/20150730/style/img/icon-normal/checkbox-checked-822e54472a.png) no-repeat;
+      background: url(http://nos.netease.com/mailpub/hxm/yanxuan-wap/p/20150730/style/img/icon-normal/checkbox-checked-822e54472a.png)
+        no-repeat;
       background-size: 34rpx 34rpx;
       background-position: 20rpx;
     }

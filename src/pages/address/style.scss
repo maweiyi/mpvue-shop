@@ -92,7 +92,8 @@
     top: 50%;
     left: 50%;
     transform: translate3d(-50%, -80%, 0);
-    background: url('http://yanxuan-static.nosdn.127.net/hxm/yanxuan-wap/p/20161201/style/img/icon-normal/noAddress-26d570cefa.png') no-repeat;
+    background: url('http://yanxuan-static.nosdn.127.net/hxm/yanxuan-wap/p/20161201/style/img/icon-normal/noAddress-26d570cefa.png')
+      no-repeat;
     background-size: 100% 100%;
     p {
       position: absolute;
@@ -116,8 +117,8 @@
       height: 70rpx;
       line-height: 70rpx;
       text-align: center;
-      border: 1rpx solid #B4282D;
-      color: #B4282D;
+      border: 1rpx solid #b4282d;
+      color: #b4282d;
     }
     div:nth-child(2) {
       border: 1rpx solid green;
