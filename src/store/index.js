@@ -25,7 +25,7 @@ const store = new Vuex.Store({
      * @param {*Object} config
      */
     update(state, config) {
-      Object.keys(config).map((item, key) => {
+      Object.keys(config).map(item => {
         state[item] = config[item];
       });
     },
