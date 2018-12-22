@@ -18,7 +18,7 @@
       >
         <block v-for="(item, index) in banner " :key="index">
           <swiper-item class="swiper-item">
-            <image :src="item.image_url" class="slide-image">
+            <img :src="item.image_url" class="slide-image">
           </swiper-item>
         </block>
       </swiper>

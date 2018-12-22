@@ -10,7 +10,7 @@
       >
         <block v-for="(item, index) in gallery " :key="index">
           <swiper-item class="swiper-item">
-            <image :src="item.img_url" class="slide-image">
+            <img :src="item.img_url" class="slide-image">
           </swiper-item>
         </block>
       </swiper>
