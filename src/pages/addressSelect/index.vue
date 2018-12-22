@@ -1,6 +1,5 @@
 <template>
   <div class="address">
-
     <scroll-view scroll-y="true" class="addcont" style="height: 100%;">
       <!-- <div class="addcont"> -->
       <div v-if="listData.length!=0" class="item">
@@ -8,19 +7,15 @@
           <div class="addresslist" :style="item.textStyle">
             <div>
               <span>{{item.name}}</span>
-              <div v-if="item.is_default" class="moren">
-                默认
-              </div>
+              <div v-if="item.is_default" class="moren">默认</div>
             </div>
             <div @click="selAddress(item.id)" class="info">
               <p>{{item.mobile}}</p>
               <p>{{item.address+item.address_detail}}</p>
             </div>
             <div @click="toDetail(item.id)"></div>
-
           </div>
         </div>
-
       </div>
 
       <div v-else class="center">
@@ -36,7 +31,7 @@
 </template>
 
 <script>
-import { get, getStorageOpenid } from "../../utils";
+import { get, getStorageOpenid } from '../../utils';
 export default {
   onShow() {
     this.openId = getStorageOpenid();
@@ -46,32 +41,32 @@ export default {
   computed: {},
   data() {
     return {
-      listData: []
+      listData: [],
     };
   },
   components: {},
   methods: {
     selAddress(id) {
-      wx.setStorageSync("addressId", id);
+      wx.setStorageSync('addressId', id);
       // wx.redirectTo({ url: "/pages/order/main?id=" + id });
       wx.navigateBack({
-        delta: 1 //返回的页面数，如果 delta 大于现有页面数，则返回到首页,
+        delta: 1, //返回的页面数，如果 delta 大于现有页面数，则返回到首页,
       });
     },
     toDetail(id) {
       console.log(id);
       wx.navigateTo({
-        url: "/pages/addaddress/main?id=" + id
+        url: '/pages/addaddress/main?id=' + id,
       });
     },
     async getAddressList() {
       var _this = this;
-      const data = await get("/address/getListAction", {
-        openId: _this.openId
+      const data = await get('/address/getListAction', {
+        openId: _this.openId,
       });
       for (var i = 0; i < data.data.length; i++) {
-        data.data[i].textStyle = "";
-        data.data[i].textStyle1 = "";
+        data.data[i].textStyle = '';
+        data.data[i].textStyle1 = '';
       }
       this.listData = data.data;
       console.log(this.listData);
@@ -79,23 +74,23 @@ export default {
     wxaddress(index) {
       if (index == 1) {
         wx.navigateTo({
-          url: "/pages/addaddress/main"
+          url: '/pages/addaddress/main',
         });
       } else {
         wx.chooseAddress({
           success: function(res) {
             var res = encodeURIComponent(JSON.stringify(res));
             wx.navigateTo({
-              url: "/pages/addaddress/main?res=" + res
+              url: '/pages/addaddress/main?res=' + res,
             });
-          }
+          },
         });
       }
-    }
-  }
+    },
+  },
 };
 </script>
 
 <style lang='scss' scoped>
-@import "./style.scss";
+@import './style.scss';
 </style>

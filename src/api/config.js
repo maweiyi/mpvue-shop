@@ -3,5 +3,5 @@
  */
 exports = {
   //首页数据
-  indexData: '/home/index'
-}
+  indexData: '/home/index',
+};

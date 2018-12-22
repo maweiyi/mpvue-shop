@@ -3,7 +3,7 @@
     <ul class="list">
       <li @click="topicDetail(item.id)" v-for="(item, index) in topicList" :key="index">
         <div class="t-img">
-          <img :src="item.scene_pic_url" alt="">
+          <img :src="item.scene_pic_url" alt>
         </div>
         <div class="info">
           <p>{{item.title}}</p>
@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import { get } from "../../utils";
+import { get } from '../../utils';
 export default {
   onPullDownRefresh() {
     this.page = 1;
@@ -39,14 +39,14 @@ export default {
     return {
       topicList: [],
       page: 1,
-      total: ""
+      total: '',
     };
   },
   components: {},
   methods: {
     async getListData(first) {
-      const data = await get("/topic/listaction", {
-        page: this.page
+      const data = await get('/topic/listaction', {
+        page: this.page,
       });
       this.total = data.total;
       if (first) {
@@ -58,12 +58,12 @@ export default {
     },
     topicDetail(id) {
       console.log(id);
-      wx.navigateTo({ url: "/pages/topicdetail/main?id=" + id });
-    }
+      wx.navigateTo({ url: '/pages/topicdetail/main?id=' + id });
+    },
   },
-  computed: {}
+  computed: {},
 };
 </script>
 <style lang='scss' scoped>
-@import "./style";
+@import './style';
 </style>

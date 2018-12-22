@@ -1,7 +1,7 @@
 <template>
   <div class="brand">
     <div @click="branddetail(item.id)" v-for="(item, index) in listData" :key="index" class="list">
-      <img :src="item.app_list_pic_url" alt="">
+      <img :src="item.app_list_pic_url" alt>
       <div class="info">
         <span>{{item.name}}</span>
         <span>|</span>
@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import { get } from "../../utils";
+import { get } from '../../utils';
 export default {
   onPullDownRefresh() {
     this.page = 1;
@@ -35,13 +35,13 @@ export default {
     return {
       listData: [],
       page: 1,
-      total: ""
+      total: '',
     };
   },
   components: {},
   methods: {
     async getData(first) {
-      const data = await get("/brand/listaction", { page: this.page });
+      const data = await get('/brand/listaction', { page: this.page });
       this.total = data.total;
       if (first) {
         this.listData = data.data;
@@ -50,12 +50,12 @@ export default {
       }
     },
     branddetail(id) {
-      wx.navigateTo({ url: "/pages/branddetail/main?id=" + id });
-    }
+      wx.navigateTo({ url: '/pages/branddetail/main?id=' + id });
+    },
   },
-  computed: {}
+  computed: {},
 };
 </script>
 <style lang='scss' scoped>
-@import "./style";
+@import './style';
 </style>

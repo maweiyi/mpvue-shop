@@ -1,31 +1,32 @@
 <template>
   <div class="address">
-
     <scroll-view :scroll-y="scrollflag" class="addcont" style="height: 100%;">
       <!-- <div class="addcont"> -->
       <div v-if="listData.length!=0" class="item">
-        <div class="list" @touchstart="startMove" :data-index="index" @touchmove="deleteGoods" @touchend="endMove" v-for="(item, index) in listData" :key="index">
+        <div
+          class="list"
+          @touchstart="startMove"
+          :data-index="index"
+          @touchmove="deleteGoods"
+          @touchend="endMove"
+          v-for="(item, index) in listData"
+          :key="index"
+        >
           <div class="addresslist" :style="item.textStyle">
             <div>
               <span>{{item.name}}</span>
-              <div v-if="item.is_default" class="moren">
-                默认
-              </div>
+              <div v-if="item.is_default" class="moren">默认</div>
             </div>
             <div class="info">
               <p>{{item.mobile}}</p>
               <p>{{item.address+item.address_detail}}</p>
             </div>
             <div @click="toDetail(item.id)"></div>
-
           </div>
           <div @click="delAddress(item.id)" class="delete" :style="item.textStyle1">
-            <div>
-              删除
-            </div>
+            <div>删除</div>
           </div>
         </div>
-
       </div>
 
       <div v-else class="center">
@@ -41,7 +42,7 @@
 </template>
 
 <script>
-import { get, getStorageOpenid } from "../../utils";
+import { get, getStorageOpenid } from '../../utils';
 export default {
   onShow() {
     this.openId = getStorageOpenid();
@@ -50,26 +51,26 @@ export default {
   created() {},
   computed: {
     tranX() {},
-    tranX1() {}
+    tranX1() {},
   },
   data() {
     return {
       scrollflag: true,
       nowIndex: 0,
       userInfo: {},
-      imgUrl: "",
+      imgUrl: '',
       listData: [],
       tranX: 0,
       tranX1: 0,
-      startX: "",
-      startY: "",
-      moveX: "",
-      moveY: "",
-      moveEndX: "",
-      moveEndY: "",
+      startX: '',
+      startY: '',
+      moveX: '',
+      moveY: '',
+      moveEndX: '',
+      moveEndY: '',
       X: 0,
-      Y: "",
-      flag: false
+      Y: '',
+      flag: false,
     };
   },
   components: {},
@@ -77,8 +78,8 @@ export default {
     initTextStyle() {
       //滑动之前先初始化数据
       for (var i = 0; i < this.listData.length; i++) {
-        this.listData[i].textStyle = "";
-        this.listData[i].textStyle1 = "";
+        this.listData[i].textStyle = '';
+        this.listData[i].textStyle1 = '';
       }
     },
     startMove(e) {
@@ -89,21 +90,21 @@ export default {
     async delAddress(id) {
       var _this = this;
       wx.showModal({
-        title: "",
-        content: "是否要删除该收货地址",
+        title: '',
+        content: '是否要删除该收货地址',
         success: function(res) {
           if (res.confirm) {
-            const data = get("/address/deleteAction", {
-              id: id
+            const data = get('/address/deleteAction', {
+              id: id,
             }).then(() => {
               _this.getAddressList();
             });
           } else if (res.cancel) {
-            console.log("用户点击取消");
+            console.log('用户点击取消');
             //滑动之前先初始化样式数据
             _this.initTextStyle();
           }
-        }
+        },
       });
     },
     deleteGoods(e) {
@@ -119,7 +120,9 @@ export default {
         this.moveY = e.touches[0].pageY;
         this.X = this.moveX - this.startX;
         this.Y = this.moveX - this.startY;
-        this.listData[index].textStyle = `transform:translateX(${this.tranX}rpx);`;
+        this.listData[index].textStyle = `transform:translateX(${
+          this.tranX
+        }rpx);`;
         if (this.X >= 100) {
           this.X = 0;
         }
@@ -128,7 +131,9 @@ export default {
           this.X = -100;
         }
         this.tranX1 = this.X;
-        this.listData[index].textStyle1 = `transform:translateX(${this.tranX1}rpx);`;
+        this.listData[index].textStyle1 = `transform:translateX(${
+          this.tranX1
+        }rpx);`;
       } else {
         this.moveX = e.touches[0].pageX;
         this.moveY = e.touches[0].pageY;
@@ -136,9 +141,11 @@ export default {
         this.Y = this.moveX - this.startY;
 
         this.tranX = this.X - 100;
-        this.listData[index].textStyle = `transform:translateX(${this.tranX}rpx);`;
+        this.listData[index].textStyle = `transform:translateX(${
+          this.tranX
+        }rpx);`;
         // transform:'translateX(' + tranX + 'rpx)'
-        console.log("heyushuo");
+        console.log('heyushuo');
 
         console.log(this.listData[index].textStyle);
 
@@ -171,13 +178,21 @@ export default {
       if (this.X > -50) {
         this.tranX1 = 0;
         this.tranX = 0;
-        this.listData[index].textStyle = `transform:translateX(${this.tranX}rpx);`;
-        this.listData[index].textStyle1 = `transform:translateX(${this.tranX1}rpx);`;
+        this.listData[index].textStyle = `transform:translateX(${
+          this.tranX
+        }rpx);`;
+        this.listData[index].textStyle1 = `transform:translateX(${
+          this.tranX1
+        }rpx);`;
       } else if (this.X <= -50) {
         this.tranX1 = -100;
         this.tranX = -100;
-        this.listData[index].textStyle = `transform:translateX(${this.tranX}rpx);`;
-        this.listData[index].textStyle1 = `transform:translateX(${this.tranX1}rpx);`;
+        this.listData[index].textStyle = `transform:translateX(${
+          this.tranX
+        }rpx);`;
+        this.listData[index].textStyle1 = `transform:translateX(${
+          this.tranX1
+        }rpx);`;
       }
       // if (Math.abs(this.X) >= 300) {
       //   this.tranX = 0;
@@ -199,17 +214,17 @@ export default {
     },
     toDetail(id) {
       wx.navigateTo({
-        url: "/pages/addaddress/main?id=" + id
+        url: '/pages/addaddress/main?id=' + id,
       });
     },
     async getAddressList() {
       var _this = this;
-      const data = await get("/address/getListAction", {
-        openId: _this.openId
+      const data = await get('/address/getListAction', {
+        openId: _this.openId,
       });
       for (var i = 0; i < data.data.length; i++) {
-        data.data[i].textStyle = "";
-        data.data[i].textStyle1 = "";
+        data.data[i].textStyle = '';
+        data.data[i].textStyle1 = '';
       }
       this.listData = data.data;
       console.log(this.listData);
@@ -217,23 +232,23 @@ export default {
     wxaddress(index) {
       if (index == 1) {
         wx.navigateTo({
-          url: "/pages/addaddress/main"
+          url: '/pages/addaddress/main',
         });
       } else {
         wx.chooseAddress({
           success: function(res) {
             var res = encodeURIComponent(JSON.stringify(res));
             wx.navigateTo({
-              url: "/pages/addaddress/main?res=" + res
+              url: '/pages/addaddress/main?res=' + res,
             });
-          }
+          },
         });
       }
-    }
-  }
+    },
+  },
 };
 </script>
 
 <style lang='scss' scoped>
-@import "./style.scss";
+@import './style.scss';
 </style>
