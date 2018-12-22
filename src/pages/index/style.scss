@@ -42,7 +42,8 @@
         position: absolute;
         top: 15rpx;
         left: 10rpx;
-        background: url('http://yanxuan.nosdn.127.net/hxm/yanxuan-wap/p/20161201/style/img/icon-normal/search2-2fb94833aa.png') center no-repeat;
+        background: url('http://yanxuan.nosdn.127.net/hxm/yanxuan-wap/p/20161201/style/img/icon-normal/search2-2fb94833aa.png')
+          center no-repeat;
         background-size: 100%;
         width: 28rpx;
         height: 28rpx;
@@ -207,7 +208,7 @@
             }
           }
 
-          li:nth-child(n+2) {
+          li:nth-child(n + 2) {
             border-left: 1rpx solid #f4f4f4;
           }
         }

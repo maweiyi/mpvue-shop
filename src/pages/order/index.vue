@@ -6,9 +6,7 @@
           <div class="addresslist">
             <div>
               <span>{{address.name}}</span>
-              <div v-if="address.is_default" class="moren">
-                默认
-              </div>
+              <div v-if="address.is_default" class="moren">默认</div>
             </div>
             <div class="info">
               <p>{{address.mobile}}</p>
@@ -19,9 +17,7 @@
         </div>
       </div>
     </div>
-    <div @click="toAdd" v-else class="seladdress">
-      请选择收货地址
-    </div>
+    <div @click="toAdd" v-else class="seladdress">请选择收货地址</div>
     <div class="orderbox">
       <div class="item">
         <div>商品合计</div>
@@ -41,7 +37,7 @@
         <div class="con">
           <div class="left">
             <div class="img">
-              <img :src="item.list_pic_url" alt="">
+              <img :src="item.list_pic_url" alt>
             </div>
             <div class="info">
               <p>{{item.goods_name}}</p>
@@ -49,91 +45,78 @@
             </div>
           </div>
           <div class="right">
-            <div class="num">
-              x{{item.number}}
-            </div>
+            <div class="num">x{{item.number}}</div>
           </div>
         </div>
       </div>
     </div>
     <div class="bottom">
-      <div>
-        实付 : ￥{{allprice}}
-      </div>
-      <div @click="pay">
-        支付
-      </div>
+      <div>实付 : ￥{{allprice}}</div>
+      <div @click="pay">支付</div>
     </div>
   </div>
 </template>
 
 <script>
-  import {
-    get,
-    post,
-    login,
-    getStorageOpenid
-  } from "../../utils";
-  export default {
-    onShow() {
-      if (wx.getStorageSync("addressId")) {
-        this.addressId = wx.getStorageSync("addressId");
-      }
-      this.openId = getStorageOpenid();
+import { get, post, login, getStorageOpenid } from '../../utils';
+export default {
+  onShow() {
+    if (wx.getStorageSync('addressId')) {
+      this.addressId = wx.getStorageSync('addressId');
+    }
+    this.openId = getStorageOpenid();
 
-      this.getDetail();
+    this.getDetail();
+  },
+  created() {},
+  mounted() {},
+  data() {
+    return {
+      addressId: '',
+      openId: '',
+      allprice: '',
+      listData: [],
+      address: {},
+    };
+  },
+  components: {},
+  methods: {
+    pay() {
+      wx.showToast({
+        title: '支付功能暂未开发', //提示的内容,
+        icon: 'none', //图标,
+        duration: 1500, //延迟时间,
+        mask: false, //显示透明蒙层，防止触摸穿透,
+        success: res => {},
+      });
     },
-    created() {},
-    mounted() {},
-    data() {
-      return {
-        addressId: "",
-        openId: "",
-        allprice: "",
-        listData: [],
-        address: {}
-      };
+    toAddressList() {
+      wx.navigateTo({
+        url: '/pages/addressSelect/main',
+      });
     },
-    components: {},
-    methods: {
-      pay() {
-        wx.showToast({
-          title: "支付功能暂未开发", //提示的内容,
-          icon: "none", //图标,
-          duration: 1500, //延迟时间,
-          mask: false, //显示透明蒙层，防止触摸穿透,
-          success: res => {}
-        });
-      },
-      toAddressList() {
-        wx.navigateTo({
-          url: "/pages/addressSelect/main"
-        });
-      },
-      toAdd() {
-        wx.navigateTo({
-          url: "/pages/addaddress/main"
-        });
-      },
-      async getDetail() {
-        const data = await get("/order/detailAction", {
-          openId: this.openId,
-          addressId: this.addressId
-        });
-        console.log(data);
+    toAdd() {
+      wx.navigateTo({
+        url: '/pages/addaddress/main',
+      });
+    },
+    async getDetail() {
+      const data = await get('/order/detailAction', {
+        openId: this.openId,
+        addressId: this.addressId,
+      });
+      console.log(data);
 
-        if (data) {
-          this.allprice = data.allPrise;
-          this.listData = data.goodsList;
-          this.address = data.address;
-        }
+      if (data) {
+        this.allprice = data.allPrise;
+        this.listData = data.goodsList;
+        this.address = data.address;
       }
     },
-    computed: {}
-  };
-
+  },
+  computed: {},
+};
 </script>
 <style lang='scss' scoped>
-  @import "./style";
-
+@import './style';
 </style>
